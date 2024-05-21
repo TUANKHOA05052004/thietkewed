@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Hàng</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Đặt video phía sau nội dung */
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid rgb(183, 90, 150); 
+            width: 600px;
+            background-color: rgba(219, 158, 182, 0.8); /* Để nội dung form hiển thị rõ trên video */
+            z-index: 1; /* Đặt form phía trước video */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #fbff1b;
+            color: rgba(20, 159, 209, 0.757);
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #d8ce11;
+
+        }
+        .logo {
+    position: fixed;
+    top: 10px; /* Điều chỉnh khoảng cách từ logo đến đỉnh của trình duyệt */
+    left: 10px; /* Điều chỉnh khoảng cách từ logo đến biên trái của trình duyệt */
+    z-index: 999; /* Đảm bảo logo nằm trên cùng của các phần khác trên trang */
+}
+
+        table {
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 2px solid #000;
+            padding: 1rem 2.5rem;
+            text-align: center;
+        }
+
+        #bill {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <p style="cursor:pointer; font-size: 36px; font-family:cursive; " class="logo">
+            <img style="border-radius: 100% 100%; width: 50px; height: 50px;" src="./form/logo.jpg"><a href="../website-ban-bo-cau/trangchu.html
+            ">MR.VẸO</a>        </p>
+    </nav>
+    
+    <video src="../website-ban-bo-cau/images/videotim.mp4" autoplay loop muted></video>
+    <form action="#" >
+        <label for="fullname">Họ và tên:</label>
+        <input type="text" id="fullname" name="fullname" required>
+    
+        <label for="phone">Số điện thoại:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+    
+	    <label for="address">Địa chỉ nhận hàng:</label>
+	    <input type="text" id="address" name="address" required>
+
+
+        <label for="product">Chọn giống:</label>
+        <select id="product" name="product">
+            <option value="bo-cau">Bồ câu Banh</option>
+            <option value="ga">Bồ Câu Gà</option>
+            <option value="vit">Bồ Câu Pháp</option>
+            <option value="ngang">Bồ Câu Titan</option>
+        </select>
+    
+        <label for="gender">Chọn loại:</label>
+        <select id="gender" name="gender">
+            <option value="nam">Con Trống</option>
+            <option value="nu">Con Mái</option>
+        </select>
+    
+        <input id="buy" type="button" value="Mua hàng">
+        <br>
+        <br>
+        <br>
+        <div id="bill">
+            <table id="bill_table">
+                <tr>
+                    <th>Họ tên</th>
+                    <th>SĐT</th>
+                    <th>địa chỉ</th>
+                    <th>giống</th>
+                    <th>loại</th>
+                </tr>
+            </table>
+        </div>
+    </form>
+    <script>
+        var buy = document.getElementById("buy");
+
+        function bill() {
+            var name = document.getElementById("fullname").value;
+            var phone = document.getElementById("phone").value;
+            var address = document.getElementById("address").value;
+            var product = document.getElementById("product").value;
+            var gender = document.getElementById("gender").value;
+
+            var htmlcode = `<tr> <td>${name}</td> <td>${phone}</td> <td>${address}</td> <td>${product}</td> <td>${gender}</td> </tr>`;
+
+            document.getElementById("bill_table").innerHTML += htmlcode;
+        }
+
+        buy.addEventListener("click", bill)
+    </script>
+</body>
+</html>

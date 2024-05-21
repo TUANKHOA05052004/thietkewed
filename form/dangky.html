@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid rgb(183, 90, 150); 
+            width: 300px;
+            background-color: #ffaf02;
+            box-shadow: 0px 0px 10px rgba(235, 212, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #fbff1b;
+            color: rgba(20, 159, 209, 0.757);
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #d8ce11;
+        }
+        .logo {
+            position: fixed;
+            top: 10px; /* Điều chỉnh khoảng cách từ logo đến đỉnh của trình duyệt */
+            left: 10px; /* Điều chỉnh khoảng cách từ logo đến biên trái của trình duyệt */
+            z-index: 999; /* Đảm bảo logo nằm trên cùng của các phần khác trên trang */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Đặt video phía sau nội dung */
+        }
+    </style>
+</head>
+<body>
+    <video src="./v2.mp4" autoplay loop muted></video>
+    <nav class="nav">
+        <p style="cursor:pointer; font-size: 36px; font-family:cursive; " class="logo">
+            <img style="border-radius: 100% 100%; width: 50px; height: 50px;" src="./logo.jpg"><a href="../trangchu.html">MR.VẸO</a>
+        </p>
+    </nav>
+    
+    <form id="loginForm">
+        <label for="fullname">HỌ và TÊN:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="username">Tên đăng nhập:</label>
+        <input type="text" id="username" name="username" required>
+    
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="phone">Số điện thoại:</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+
+        <label for="email">Email (Gmail):</label>
+        <input type="email" id="email" name="email" required>
+    
+        <input type="submit" value="Đăng ký">
+    </form>
+    
+    <div id="bill">
+        <table id="bill_table">
+            <tr>
+                <th>Tên đăng nhập</th>
+                <th>Mật khẩu</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        var loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", function(event) {
+            event.preventDefault(); // Ngăn chặn việc gửi form đi để có thể xử lý dữ liệu
+            
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            var phone = document.getElementById("phone").value;
+            var email = document.getElementById("email").value;
+
+            // Thêm dữ liệu vào bảng
+            var billTable = document.getElementById("bill_table");
+            var newRow = billTable.insertRow(-1); // Chèn vào cuối bảng
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
+            var cell3 = newRow.insertCell(2);
+            var cell4 = newRow.insertCell(3);
+            cell1.innerHTML = username;
+            cell2.innerHTML = password;
+            cell3.innerHTML = phone;
+            cell4.innerHTML = email;
+
+            // Xóa dữ liệu sau khi thêm vào bảng
+            document.getElementById("username").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("email").value = "";
+        });
+    </script>
+
+</body>
+</html>
